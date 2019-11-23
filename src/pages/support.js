@@ -5,7 +5,7 @@ import BasePage from "./basePage";
 import "../../src/components/leftMenu/leftMenu.css";
 import "../../src/components/chat/chat.css";
 import router, {routes} from "../modules/router";
-//import api from "../modules/api";
+import api from "../modules/api";
 
 export default class Support extends BasePage {
     constructor() {
@@ -13,8 +13,10 @@ export default class Support extends BasePage {
     }
 
     renderContent(parent) {
-        /*const userList = api.supportChats();
-        ${userList.map(player => safeHtml`
+
+        const userList = api.supportChats();
+        console.log(userList);
+        /*${userList.map(player => safeHtml`
                    <div class="leaderboard__player ${
                currentUser && player.id === currentUser.id
                    ? "leaderboard__player_me"
@@ -30,16 +32,11 @@ export default class Support extends BasePage {
 
         parent.innerHTML = safeHtml`
             <div class="leftMenu">
-           
-          
-                <a class="leftMenu__oneUser id_1" href="http://localhost:3030/support/chats/1/">
-                    <p class="leftMenu__oneUser__name">Maxim</p>
-                    <p class="leftMenu__oneUser__lastMessage">Hello!</p>
-                </a>
                 <a class="leftMenu__oneUser id_2" href="http://localhost:3030/support/chats/2/">
                     <p class="leftMenu__oneUser__name">Maxim</p>
                     <p class="leftMenu__oneUser__lastMessage">Hello!</p>
                 </a>
+               
             </div>
             <div class="chat"><p class="chat__placeholder">Выберите пользователя, чтобы начать чат</p></div>
         `;

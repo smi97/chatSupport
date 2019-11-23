@@ -2,7 +2,7 @@ import API, {STATUS_OK} from "./api";
 
 class User {
     constructor() {
-        this._updateCurrentUser();
+        //this._updateCurrentUser();
     }
 
     async login(email, password) {

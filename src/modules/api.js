@@ -1,12 +1,13 @@
 import httpNetwork from "./http";
 
 const BACKEND_URL = "http://95.163.212.121";
-const API_V1_PREFIX = "api/v1/chat/";
+const API_V1_PREFIX = "api/v1/chat";
 
 const routes = {
-    USER_MESSAGES: "/user/messages",
-    SUPPORT_CHATS: "/support/chats",
-    SUPPORT_USER_MESSAGES: "/support/chats/",
+    USER_MESSAGES: "user/messages",
+    SUPPORT_CHATS: "support/chats",
+    SUPPORT_USER_MESSAGES: "support/chats/",
+    USER_REGISTER: "user/register",
 };
 
 export const STATUS_OK = "ok";
@@ -16,11 +17,8 @@ class API {
     constructor() {
     }
 
-    registerUser = (email, name, password) =>
+    registerUser = () =>
         this._post(routes.USER_REGISTER, {
-            email,
-            name,
-            password,
         });
 
     loginUser = (email, password) =>

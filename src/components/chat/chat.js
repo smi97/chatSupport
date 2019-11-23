@@ -7,6 +7,7 @@ import Input from "../form/elements/input";
 import SubmitButton from "../form/elements/submitButton";
 import Form from "../form";
 import Message from "./message";
+import api from "../../modules/api";
 
 export default class Chat extends BasePage {
     render() {
@@ -15,12 +16,13 @@ export default class Chat extends BasePage {
         }
         this.chat = document.querySelector(".chat");
 
-        const id = location.pathname.replace("/support/chats/","").replace("/","");
-        if(document.querySelector(`.id_${id}`)){
-            document.querySelector(`.id_${id}`).classList.add("active");
+        this.id = location.pathname.replace("/support/chats/","").replace("/","");
+        if(document.querySelector(`.id_${this.id}`)){
+            document.querySelector(`.id_${this.id}`).classList.add("active");
         }
 
         const my = !location.pathname.startsWith("/support");
+        location.pathname.startsWith("/support") ? this.id = 1 : {};
 
         this.chat.innerHTML = safeHtml`
             <div class="chat__messages">
@@ -50,11 +52,31 @@ export default class Chat extends BasePage {
         this.chatMessages = this.chat.querySelector(".chat__messages");
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
 
-        this.socket = new WebSocket("ws://95.163.212.121/api/v1/private/game");
+        if(!this._getCookie("user_id")) {
+            this.chat.querySelector(".Message").addEventListener(
+            "input",
+            this._onMessageTyped
+            );
+        } else {
+            this.createSocket();
+        }
+    }
+
+    _onMessageTyped = () => {
+        this.chat.querySelector(".Message").removeEventListener(
+            "input",
+            this._onMessageTyped
+        );
+        api.registerUser().catch(() => {});
+        this.createSocket();
+    };
+
+    createSocket = () => {
+        const id = location.pathname.startsWith("/support") ? "2" : "1";
+        this.socket = new WebSocket("ws://95.163.212.121/api/v1/chat/stream/" + id);
         this.socket.onopen = () => {
             console.log("[open] Соединение установлено");
             console.log("Отправляем данные на сервер");
-            this.socket.send(`{"type" : "start"}`);
         };
 
         this.socket.onmessage = this._messageHandler;
@@ -70,16 +92,8 @@ export default class Chat extends BasePage {
         this.socket.onerror = (error) => {
             console.log(`[error] ${error.message}`);
         };
+    };
 
-        /*this.chat.querySelector(".Message").addEventListener(
-            "input",
-            this._onMessageTyped
-        );*/
-    }
-
-    /*_onMessageTyped = e => {
-        api.register();
-    };*/
 
 //{"id":0,"user_from_id":34,"user_to_id":1,"text":"hello support","time":"2019-11-23T13:16:01.4585217Z"}
 
