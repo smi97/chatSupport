@@ -1,0 +1,32 @@
+.userinfo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.userinfo__name {
+    margin-right: 1em;
+    font-size: 1.2em;
+}
+
+.userinfo__avatar {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 50%;
+    margin-right: 1em;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.userinfo:hover .userinfo__avatar {
+    border-color: gold;
+}
+
+@media (max-width: 320px) {
+    .userinfo__avatar {
+        width: 35px;
+        height: 35px;
+    }
+}

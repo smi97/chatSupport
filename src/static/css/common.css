@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css?family=Play&display=swap");
+
+$plateBackground: #250823bf;
+
+* {
+    outline: none !important;
+    box-sizing: border-box;
+    font-family: "Play", sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    //background-image: url("/assets/img/back.jpg");
+    max-height: 100vh;
+    overflow: hidden;
+    //background-position: center;
+    //background-size: cover;
+    transition: filter 0.2s;
+    background: aliceblue;
+}
+
+a,
+button {
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+a:not(.button):hover {
+    color: gold;
+    transition: all 0.3s ease-in-out;
+}
+
+.content {
+    position: relative;
+    height: 86vh;
+    display: flex;
+}
+
+.plate {
+    position: relative;
+    width: 20%;
+    background: $plateBackground;
+    box-shadow: 0 5px 17px 0px #00000087;
+    border-radius: 3px;
+    padding: 2em;
+    color: white;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.plate__innerContent {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.plate__size-m {
+    width: 30%;
+}
+
+.plate__size-l {
+    width: 35%;
+}
+
+.plate h1,
+h2,
+h3 {
+    margin-top: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.text__align-center {
+    text-align: center;
+}
+
+.text__size-big {
+    font-size: 3em;
+    margin-bottom: 0.6em;
+    margin-top: 0.6em;
+}
+
+.text__size-normal {
+    font-size: 2em;
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .text__size-normal {
+        font-size: 1em;
+    }
+}
+
+@media (max-height: 800px) {
+    .text__size-big {
+        font-size: 1.5em;
+    }
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media  (max-width: 1024px) {
+    .text__size-normal {
+        font-size: 1em;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .plate  {
+        width: 60%;
+    }
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .header {
+        height: 10vh;
+    }
+
+    .text__size-big {
+        font-size: 2em;
+    }
+
+}
+
+@media (max-width: 320px) {
+
+    .plate {
+        padding: 1em;
+    }
+
+    .text__size-big {
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+}

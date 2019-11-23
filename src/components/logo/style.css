@@ -1,0 +1,19 @@
+.logo {
+    padding: 1em 0.5em;
+}
+
+.logo__image {
+    max-height: 10vh;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .logo__image {
+        max-height: 6vh;
+    }
+
+}
+@media (max-width: 320px){
+    .logo {
+        padding: 0.5em;
+    }
+}

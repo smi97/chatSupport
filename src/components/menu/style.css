@@ -1,0 +1,21 @@
+.menu {
+    padding: 1em;
+    display: flex;
+    margin: auto 30px auto auto;
+    justify-content: space-between;
+    min-width: 17em;
+}
+
+.menu .button {
+    text-transform: uppercase;
+    margin-right: 1em;
+}
+
+@media (max-width: 320px) {
+    .menu {
+        padding: .5em;
+        min-width: 14em;
+        margin: auto;
+    }
+
+}
