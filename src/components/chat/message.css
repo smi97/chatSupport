@@ -1,0 +1,28 @@
+.message {
+    display: flex;
+    transition: 0.3s;
+
+}
+
+.message__owner-me {
+    margin: .5em 1em .5em auto;
+    padding: 0 1em;
+    background-color: #2480cb;
+    color: aliceblue;
+    border-radius: 10px 20px;
+}
+
+.message__owner-notme {
+    margin: .5em auto .5em 1em;
+    padding: 0 1em;
+    background-color: #1e2a39;
+    color: aliceblue;
+    border-radius: 20px 10px;
+}
+
+.message__new {
+    opacity: 0;
+    transition: 0.3s;
+    height: 0;
+    margin: 0;
+}

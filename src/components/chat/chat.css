@@ -1,8 +1,50 @@
 .chat {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat__messages {
+    overflow: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    margin-top: auto;
 }
 
 .chat__placeholder {
     margin: auto;
+}
+
+.chat__sendForm .form {
+    border-top: 1px solid #7eb7eb;
+    flex-direction: row;
+}
+
+.chat__sendForm .form__field__label {
+    display: none;
+}
+
+.chat__sendForm .form__field.button {
+    margin: 0;
+}
+
+.chat__sendForm .form .form__field-wrapper:first-child
+{
+    width: 100%;
+}
+
+.chat__sendForm .form .form__field-wrapper {
+    margin: 10px;
+}
+
+.chat__sendForm input.form__field {
+    background-color: #a4b4f769;
+}
+
+.chat__sendForm input.form__field:focus {
+    box-shadow: 0 0 10px 0 #e353f5;
+    background: #fff;
 }

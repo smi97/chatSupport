@@ -1,14 +1,18 @@
-import { html } from "common-tags";
+import { safeHtml } from "common-tags";
 
 import BasePage from "./basePage";
-//import { LinkButton } from "../components/buttons";
+import "../../src/components/leftMenu/leftMenu.css";
+import Chat from "../components/chat/chat";
 
 export default class Index extends BasePage {
     renderContent(parent) {
-        document.title = "LeMMaS";
-        parent.innerHTML = html`
-            
+        parent.innerHTML = safeHtml`
+            <div class="chat">
+                <p class="chat__placeholder">Отправьте сообщение</p>
+            </div>
         `;
 
+        this.chat = new Chat();
+        this.chat.render();
     }
 }

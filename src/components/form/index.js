@@ -34,6 +34,10 @@ export default class Form extends BaseComponent {
         return this.parent.querySelector("." + fieldName).value;
     }
 
+    clear(fieldName) {
+        return this.parent.querySelector("." + fieldName).value = "";
+    }
+
     showOK(info) {
         this.message.innerHTML = `<i class="fas fa-check"></i> ${info}`;
         this.message.classList.remove(ERROR_MESSAGE_CLASS);
