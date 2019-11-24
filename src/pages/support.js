@@ -1,4 +1,4 @@
-import { safeHtml } from "common-tags";
+import { html } from "common-tags";
 
 import BasePage from "./basePage";
 
@@ -12,44 +12,39 @@ export default class Support extends BasePage {
         super();
     }
 
-    renderContent(parent) {
+    async start () {
+        this.render();
+        await this.renderContent();
+    }
 
-        const userList = api.supportChats();
-        console.log(userList);
-        /*${userList.map(player => safeHtml`
-                   <div class="leaderboard__player ${
-               currentUser && player.id === currentUser.id
-                   ? "leaderboard__player_me"
-                   : ""
-           }">
-        <span class="leaderboard__player-name">${
-                player.name
-            }</span>
-            <span class="leaderboard__player-position">${i++}</span>
-            </div>
-                `
-        )}*/
+    async renderContent(parent) {
 
-        parent.innerHTML = safeHtml`
+        api.supportChats().then(response => {
+            console.log(response);
+            parent.innerHTML = html`
             <div class="leftMenu">
-                <a class="leftMenu__oneUser id_2" href="http://localhost:3030/support/chats/2/">
-                    <p class="leftMenu__oneUser__name">Maxim</p>
-                    <p class="leftMenu__oneUser__lastMessage">Hello!</p>
-                </a>
-               
+            ${response.chats.map(chat => html`
+            <a class="leftMenu__oneUser id_${chat.user.id}" href="http://localhost:3030/support/chats/${chat.user.id}/">
+                    <p class="leftMenu__oneUser__name">${chat.user.name}</p>
+                    <p class="leftMenu__oneUser__lastMessage">${chat.last_message ? chat.last_message.text : ""}</p>
+            </a>`
+            )}
             </div>
             <div class="chat"><p class="chat__placeholder">Выберите пользователя, чтобы начать чат</p></div>
         `;
-
-        document.querySelectorAll("a").forEach(element => {
-           element.addEventListener("click", () => {
-               if(document.querySelector(".active")) {
-                   document.querySelector(".active").classList.remove("active");
-               }
-               element.classList.add("active");
-           });
+            document.querySelectorAll("a").forEach(element => {
+                element.addEventListener("click", () => {
+                    if (document.querySelector(".active")) {
+                        document.querySelector(".active").classList.remove("active");
+                    }
+                    element.classList.add("active");
+                });
+            });
+            document.addEventListener("keydown", this._escape);
         });
-        document.addEventListener("keydown", this._escape);
+
+
+
     }
 
     _escape = event => {

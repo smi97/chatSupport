@@ -14,6 +14,7 @@ export default class Chat extends BasePage {
         if(!document.querySelector(".chat")) {
             (new Support()).render();
         }
+
         this.chat = document.querySelector(".chat");
 
         this.id = location.pathname.replace("/support/chats/","").replace("/","");
@@ -58,6 +59,10 @@ export default class Chat extends BasePage {
             this._onMessageTyped
             );
         } else {
+            this.createSocket();
+        }
+        if(location.pathname.startsWith("/support"))
+        {
             this.createSocket();
         }
     }

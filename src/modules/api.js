@@ -39,7 +39,7 @@ class API {
         this._get(routes.USER_MESSAGES).then(response => response.body);
 
     supportChats = () =>
-        this._get(routes.SUPPORT_CHATS).then(response => response.body);
+        this._get(routes.SUPPORT_CHATS);
 
     supportUserMessages = userId =>
         this._get(routes.SUPPORT_USER_MESSAGES + userId).then(response => response.body);
